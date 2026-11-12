@@ -17,7 +17,8 @@ def test_api(api_name, endpoint, payload=None,iteration=1):
 
             if response.status_code == 200:
                 df.loc[i] = [api_name, current_timestamp, latency, response.status_code]
-                print(response)
+                # print(response.json())   #shows the data 
+                
             else:
                 df.loc[i] = [api_name, current_timestamp, latency, response.status_code]
 
@@ -39,24 +40,24 @@ def test_api(api_name, endpoint, payload=None,iteration=1):
     # print(df[df["API name"]==api_name]["latency"].mean())
 
 
-# api_name=input("enter the API Name\n\n")
-# api_key=input("Enter the API URL endpoint\n")
-# payload={}
-# para=input("Enter \"yes\" if you want to pass any parameter else Enter \"no\"\n")
-# if para.strip().lower()=="yes":
-#     no_of_para=int(input("Enter the no. of parameters\n"))
-#     for _ in range(no_of_para):
-#         type_of_para=input("enter the type of parameter\n")
-#         actual_para=input("Enter the parameter\n")
-#         payload.update({type_of_para:actual_para})
-# iteration=int(input("enter the no. of iteration that how many times your key to be tested\n"))
+api_name=input("enter the API Name\n\n")
+api_key=input("Enter the API URL endpoint\n")
+payload={}
+para=input("Enter \"yes\" if you want to pass any parameter else Enter \"no\"\n")
+if para.strip().lower()=="yes":
+    no_of_para=int(input("Enter the no. of parameters\n"))
+    for _ in range(no_of_para):
+        type_of_para=input("enter the type of parameter\n")
+        actual_para=input("Enter the parameter\n")
+        payload.update({type_of_para:actual_para})
+iteration=int(input("enter the no. of iteration that how many times your key to be tested\n"))
 
 
 
 
 
-# test_api(api_name,api_key, payload,iteration)
-test_api("nationalize", "https://api.nationalize.io", {"name":"Aman"})
+test_api(api_name,api_key, payload,iteration)
+# test_api("nationalize", "https://api.nationalize.io", {"name":"Aman"})
 # test_api("ipify", "https://api.ipify.org?format=json")
 # test_api("jokes", "https://official-joke-api.appspot.com/random_joke")
 # test_api("zippopotam", "https://api.zippopotam.us/us/33162")
